@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Rania ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #ff9ecf, #ff4f81);
+    overflow: hidden;
+    color: white;
+}
+
+h1 {
+    margin-top: 40px;
+    font-size: 2.5rem;
+}
+
+img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin: 20px 0;
+    box-shadow: 0 0 20px rgba(255,255,255,0.6);
+}
+
+.buttons {
+    position: relative;
+    margin-top: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background-color: #ff007f;
+    color: white;
+}
+
+#noBtn {
+    background-color: white;
+    color: #ff007f;
+    position: absolute;
+}
+
+.heart {
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Rania ❤️<br>Will You Be My Valentine?</h1>
+
+<img src="rania.png" alt="Rania">
+
+<div class="buttons">
+    <button id="yesBtn">YES 💕</button>
+    <button id="noBtn">NO 😅</button>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="rania.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const music = document.getElementById("bgMusic");
+
+let noCount = 0;
+
+const cutePleases = [
+    "Please? 🥺",
+    "Pretty please? 💕",
+    "Just say yes 😭",
+    "Don’t break my heart 💔",
+    "I’ll buy you snacks 🍫",
+    "I’ll send memes daily 😂",
+    "I’ll give unlimited hugs 🤗",
+    "You know you want to 😌",
+    "Come on Raniaaa 💖",
+    "Pleeeeease 🥹💘"
+];
+
+document.body.addEventListener("click", () => {
+    music.play();
+}, { once: true });
+
+noBtn.addEventListener("mouseover", () => {
+    if (noCount < cutePleases.length) {
+        noBtn.innerText = cutePleases[noCount];
+        noCount++;
+    } else {
+        noBtn.innerText = "No option not available 😌";
+    }
+
+    const x = Math.random() * (window.innerWidth - 150);
+    const y = Math.random() * (window.innerHeight - 150);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+    yesBtn.style.fontSize = (currentSize + 5) + "px";
+});
+
+yesBtn.addEventListener("click", () => {
+    celebrate();
+});
+
+function celebrate() {
+
+    document.body.style.transition = "background 5s ease";
+    document.body.style.background = "linear-gradient(135deg, #ff0033, #990000)";
+
+    document.body.innerHTML = `
+        <h1 style="margin-top:30vh; font-size:3rem;">
+        SHE SAID YESSSS 💖😭🎉<br><br>
+        I LOVE YOU RANIA 💘❤️🔥
+        </h1>
+    `;
+
+    setInterval(() => {
+        createEmoji();
+    }, 150);
+}
+
+function createEmoji() {
+    const emojis = ["🎉","💖","❤️","💘","🥰","✨","💕","🎊"];
+    const el = document.createElement("div");
+    el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.position = "absolute";
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.top = "100vh";
+    el.style.fontSize = (Math.random() * 20 + 20) + "px";
+    el.style.animation = "floatUp 4s linear forwards";
+    document.body.appendChild(el);
+
+    setTimeout(() => {
+        el.remove();
+    }, 4000);
+}
+
+const style = document.createElement("style");
+style.innerHTML = `
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+}`;
+document.head.appendChild(style);
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
